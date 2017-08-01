@@ -7,8 +7,8 @@ import re
 base_url = "https://api.genius.com"
 headers = {'Authorization': 'Bearer U6sHDfsAn3dAnrPFFwgxzB05A7-3kVK8pb2yNphCu37VVEeDXg1MIYlCTf0bRrfx'}
 
-song_title = "Bodak Yellow"
-artist_name = "Cardi B"
+song_title = "Bank Account"
+artist_name = "21 Savage"
 
 #removing brackets function by JF Sebastian stack overflow, needed to remove brackets such as [Verse 1 21 Savage]
 def remove_text_inside_brackets(text, brackets="[]"):
@@ -62,15 +62,13 @@ if song_info:
   
   #From here trying to capture multiple songs 
   artistID = song_info["result"]["primary_artist"]["id"]
-  looper = 0
+  looper = 1
   while True:
       artistUrl = base_url + "/artists/" + str(artistID) + "/songs?page="+str(looper)+"&per_page="+str(50)
       looper = looper + 1
       response = requests.get(artistUrl, headers=headers)
       json = response.json()
       print(len(json["response"]["songs"]))   #Fixing this stuff rn
-      if len(json["response"]["songs"]) < 50:
-          break
       counter = 0
       for song in json["response"]["songs"]:
           print(song["api_path"] +" "+ str(counter))
@@ -80,5 +78,5 @@ if song_info:
           
       endLyrics = lyrics_from_song_api_path(song_api_path)
       print(endLyrics)
-      else:
-        print(song_info)
+      if len(json["response"]["songs"]) < 50:
+          break
