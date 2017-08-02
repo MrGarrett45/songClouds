@@ -5,7 +5,7 @@ Generating a word cloud that assigns colors to words based on
 a predefined mapping from colors to words
 """
 
-from wordcloud import (WordCloud, get_single_color_func, ImageColorGenerator)
+from wordcloud import (WordCloud, get_single_color_func, ImageColorGenerator, STOPWORDS)
 import matplotlib.pyplot as plt
 import shelve
 import numpy as np
@@ -72,10 +72,18 @@ class GroupedColorFunc(object):
 shelveFile = shelve.open('lyricData')
 #text = open("lyrics.txt").read()
 text = shelveFile['lyrics']
+text.replace("\\'", "")
+text.replace("\\\\'", "")
+#print(text)
+stopwords = set(STOPWORDS)
+stopwords.add("xa0")
+stopwords.add("ctr")
+stopwords.add("zl")
+stopwords.add("don")
 
-coloring = np.array(Image.open("darkColors.jpg"))
+coloring = np.array(Image.open("mgmtPic.png"))
 # Since the text is small collocations are turned off and text is lower-cased
-wc = WordCloud(collocations=False, background_color="white", max_words=2000,mask=coloring)
+wc = WordCloud(stopwords = stopwords, collocations=False, background_color="white", max_words=2000,mask=coloring)
 wc.generate(text.lower())
 color_to_words = {
     # words below will be colored with a green single color function
@@ -96,7 +104,7 @@ image_colors = ImageColorGenerator(coloring)
 # grouped_color_func = SimpleGroupedColorFunc(color_to_words, default_color)
 
 # Create a color function with multiple tones
-grouped_color_func = GroupedColorFunc(color_to_words, default_color)
+#grouped_color_func = GroupedColorFunc(color_to_words, default_color)
 
 # Apply our color function
 wc.recolor(color_func=image_colors)
