@@ -5,9 +5,11 @@ Generating a word cloud that assigns colors to words based on
 a predefined mapping from colors to words
 """
 
-from wordcloud import (WordCloud, get_single_color_func)
+from wordcloud import (WordCloud, get_single_color_func, ImageColorGenerator)
 import matplotlib.pyplot as plt
 import shelve
+import numpy as np
+from PIL import Image
 
 
 class SimpleGroupedColorFunc(object):
@@ -71,9 +73,10 @@ shelveFile = shelve.open('lyricData')
 #text = open("lyrics.txt").read()
 text = shelveFile['lyrics']
 
+coloring = np.array(Image.open("darkColors.jpg"))
 # Since the text is small collocations are turned off and text is lower-cased
-wc = WordCloud(collocations=False).generate(text.lower())
-
+wc = WordCloud(collocations=False, background_color="white", max_words=2000,mask=coloring)
+wc.generate(text.lower())
 color_to_words = {
     # words below will be colored with a green single color function
     '#00ff00': ['beautiful', 'explicit', 'simple', 'sparse',
@@ -88,7 +91,7 @@ color_to_words = {
 # Words that are not in any of the color_to_words values
 # will be colored with a grey single color function
 default_color = 'grey'
-
+image_colors = ImageColorGenerator(coloring)
 # Create a color function with single tone
 # grouped_color_func = SimpleGroupedColorFunc(color_to_words, default_color)
 
@@ -96,7 +99,7 @@ default_color = 'grey'
 grouped_color_func = GroupedColorFunc(color_to_words, default_color)
 
 # Apply our color function
-wc.recolor(color_func=grouped_color_func)
+wc.recolor(color_func=image_colors)
 
 # Plot
 plt.figure()
