@@ -26,3 +26,6 @@ Chance The Rapper:
 
 MGMT:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/MGMT.png "MGMT")
+
+And, my personal favorite, Wiz Khalifa:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/wizKhalifa.png "Wiz Khalifa")
