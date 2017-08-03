@@ -15,8 +15,8 @@ The odds this doesn't violate Genius's TOS are dicy at best.
 Finally thanks to the "big-ish" data blog for their blog post on effeciently scraping the Genius API.
 
 # Examples
-Cage The Elephant:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/CageTheElephant.png "Cage The Elephant")
+Red Hot Chili Peppers:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/redHotChiliPeppers.png "Chili Peppers")
 
 Kendrick Lamar:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/kendrickLamar.png "Kendrick Lamar")
@@ -30,5 +30,5 @@ Chance The Rapper:
 MGMT:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/MGMT.png "MGMT")
 
-And, my personal favorite, Wiz Khalifa:
+Wiz Khalifa:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/wizKhalifa.png "Wiz Khalifa")
