@@ -1,6 +1,6 @@
 # songClouds
 
-Take artists song lyrics via web scraping and turn them into song clouds
+Take artists song lyrics via web scraping and turn them into word clouds
 
 This program uses the Genius API as well as traditional webscraping to collect all the lyrics by a particular artist available on Genius and turns them into a word cloud that shows their most frequently used words. 
 
