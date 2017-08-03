@@ -28,7 +28,7 @@ Danny Brown:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/dannyBrown.png "Danny Brown")
 
 MGMT:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/MGMT.png "MGMT")
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/MGMT.png "MGMT")
 
 Tame Impala:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/tameImpala.png "Tame Impala")
