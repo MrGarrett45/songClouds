@@ -16,19 +16,19 @@ Finally thanks to the "big-ish" data blog for their blog post on effeciently scr
 
 # Examples
 Red Hot Chili Peppers:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/redHotChiliPeppers.png "Chili Peppers")
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/redHotChiliPeppers.png "Chili Peppers")
 
-Kendrick Lamar:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/kendrickLamar.png "Kendrick Lamar")
+MF Doom:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/MFDoom.png "Doom")
 
 Kenney Chesney:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/kenneyChesney.png "Kenney Chesney")
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/kenneyChesney.png "Kenney Chesney")
 
-Chance The Rapper:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/chanceTheRapper.png "Chance The Rapper")
+Danny Brown:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/dannyBrown.png "Danny Brown")
 
 MGMT:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/MGMT.png "MGMT")
 
-Wiz Khalifa:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/wizKhalifa.png "Wiz Khalifa")
+Tame Impala:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/tameImpala.png "Tame Impala")
