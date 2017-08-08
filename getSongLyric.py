@@ -4,6 +4,13 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import shelve
+import sqlite3
+
+conn = sqlite3.connect('artistDB.db')
+table = conn.cursor()
+table.execute('''CREATE TABLE IF NOT EXISTS artists (id integer primary key, name text, numSongs real, lyrics text) ''')
+#conn.commit()
+#conn.close()
 
 base_url = "https://api.genius.com"
 headers = {'Authorization': 'Bearer U6sHDfsAn3dAnrPFFwgxzB05A7-3kVK8pb2yNphCu37VVEeDXg1MIYlCTf0bRrfx'}
@@ -89,6 +96,10 @@ if song_info:
           break
 
 fullLyrics = fullLyrics.replace("  ", " ")
+artistInfo = (artistID, artist_name, counter, fullLyrics)
+table.execute('INSERT INTO artists VALUES (?,?,?,?)', artistInfo)
+conn.commit()
+conn.close()
 shelveFile['lyrics'] = fullLyrics
 #lyricFile.close()
 shelveFile.close()

@@ -1,16 +1,16 @@
-"""
-Colored by Group Example
-========================
-Generating a word cloud that assigns colors to words based on
-a predefined mapping from colors to words
-"""
+#! python3
 
 from wordcloud import (WordCloud, get_single_color_func, ImageColorGenerator, STOPWORDS)
 import matplotlib.pyplot as plt
 import shelve
 import numpy as np
 from PIL import Image
+import random
+from palettable.colorbrewer.sequential import RdPu_9
+import sqlite3
 
+def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    return tuple(RdPu_9.colors[random.randint(2,8)])
 
 class SimpleGroupedColorFunc(object):
     """Create a color function object which assigns EXACT colors
@@ -70,45 +70,58 @@ class GroupedColorFunc(object):
         return self.get_color_func(word)(word, **kwargs)
 
 shelveFile = shelve.open('lyricData')
-#text = open("lyrics.txt").read()
-text = shelveFile['lyrics']
+conn = sqlite3.connect('artistDB.db')
+table = conn.cursor()
+table.execute("SELECT lyrics FROM artists WHERE name=?", ("Desiigner",))
+lyrics = table.fetchone()
+conn.commit()
+conn.close()
+
+text = lyrics[0]
+#text = shelveFile['lyrics']
 text.replace("\\'", "")
 text.replace("\\\\'", "")
-#print(text)
+
+shelveFile.close()
+
 stopwords = set(STOPWORDS)
 stopwords.add("xa0")
 stopwords.add("ctr")
 stopwords.add("zl")
 stopwords.add("don")
+stopwords.add("llc")
+stopwords.add("bmi")
+stopwords.add("ain")
+stopwords.add("ll")
+stopwords.add("nigga")
 
-coloring = np.array(Image.open("hands.png"))
+coloring = np.array(Image.open("manyColors.jpg"))
+
 # Since the text is small collocations are turned off and text is lower-cased
 wc = WordCloud(stopwords = stopwords, collocations=False, background_color="white", max_words=2000,mask=coloring)
 wc.generate(text.lower())
+
+
+
 color_to_words = {
     # words below will be colored with a green single color function
-    '#00ff00': ['beautiful', 'explicit', 'simple', 'sparse',
+    'red': ['beautiful', 'explicit', 'simple', 'sparse',
                 'readability', 'rules', 'practicality',
                 'explicitly', 'one', 'now', 'easy', 'obvious', 'better'],
     # will be colored with a red single color function
-    'red': ['ugly', 'implicit', 'complex', 'complicated', 'nested',
-            'dense', 'special', 'errors', 'silently', 'ambiguity',
-            'guess', 'hard']
+    #'red': ['ugly', 'implicit', 'complex', 'complicated', 'nested',
+    #        'dense', 'special', 'errors', 'silently', 'ambiguity',
+    #        'guess', 'hard']
 }
-
-# Words that are not in any of the color_to_words values
 # will be colored with a grey single color function
-default_color = 'grey'
+default_color = 'red'
 image_colors = ImageColorGenerator(coloring)
-# Create a color function with single tone
-# grouped_color_func = SimpleGroupedColorFunc(color_to_words, default_color)
+grouped_color_func = GroupedColorFunc(color_to_words,default_color)
 
-# Create a color function with multiple tones
-#grouped_color_func = GroupedColorFunc(color_to_words, default_color)
-
-# Apply our color function
+#Multiple options for coloring here. Think its best to use a palette coloring system unless you want to only do one color in which case use SimpleGrouped
 wc.recolor(color_func=image_colors)
-
+#wc.recolor(color_func=grouped_color_func)
+#wc.recolor(color_func=color_func)  #for palette colors
 # Plot
 plt.figure()
 plt.imshow(wc, interpolation="bilinear")

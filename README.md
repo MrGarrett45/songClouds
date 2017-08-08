@@ -8,7 +8,7 @@ Much of the work of this program is done via the open source wordcloud library a
 
 My program make_word_cloud is basically just taken from one of the examples on that github page and altered a bit.
 
-The program is as simple as running getSongLyric.py, entering whatever artist you want, waiting for it to collect data, then running the make word cloud program. The only problem with this program is that webscraping is SLOW and it takes about 1 second per song to find and store each song, so collecting data for popular artists with 200+ songs gets annoying.
+The program is as simple as running getSongLyric.py, entering whatever artist you want, waiting for it to collect data, then running the makeCloud program. The only problem with this program is that webscraping is SLOW and it takes about 1 second per song to find and store each song, so collecting data for popular artists with 200+ songs gets annoying.
 
 The odds this doesn't violate Genius's TOS are dicy at best.
 
@@ -16,19 +16,19 @@ Finally thanks to the "big-ish" data blog for their blog post on effeciently scr
 
 # Examples
 Red Hot Chili Peppers:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/redHotChiliPeppers.png "Chili Peppers")
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/redHotChiliPeppers.png "Chili Peppers")
 
-Kendrick Lamar:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/kendrickLamar.png "Kendrick Lamar")
+MF Doom:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/MFDoom.png "Doom")
 
 Kenney Chesney:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/kenneyChesney.png "Kenney Chesney")
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/kenneyChesney.png "Kenney Chesney")
 
-Chance The Rapper:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/chanceTheRapper.png "Chance The Rapper")
+Danny Brown:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/dannyBrown.png "Danny Brown")
 
 MGMT:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/MGMT.png "MGMT")
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/MGMT.png "MGMT")
 
-Wiz Khalifa:
-![alt text](https://github.com/MrGarrett45/songClouds/blob/master/wizKhalifa.png "Wiz Khalifa")
+Tame Impala:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/tameImpala.png "Tame Impala")
