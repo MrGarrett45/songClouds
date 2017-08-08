@@ -1,18 +1,28 @@
 #! python3
 
-import requests, re, sqlite3
+import requests, re, sqlite3, makeCloud, sys
 from bs4 import BeautifulSoup
 
 conn = sqlite3.connect('artistDB.db')
 table = conn.cursor()
 table.execute('''CREATE TABLE IF NOT EXISTS artists (id integer primary key, name text, numSongs real, lyrics text) ''')
-#conn.commit()
-#conn.close()
 
 base_url = "https://api.genius.com"
 headers = {'Authorization': 'Bearer U6sHDfsAn3dAnrPFFwgxzB05A7-3kVK8pb2yNphCu37VVEeDXg1MIYlCTf0bRrfx'}
 
 artist_name = input("Enter an artists name: ")
+
+#Check if the artist is already in the DB, if so then make the cloud and quit
+test = table.execute("SELECT EXISTS(SELECT 1 FROM artists WHERE name=?)", (artist_name,))
+checkDB = table.fetchone()
+if checkDB == (1, ):
+    #print(checkDB)
+    print("Artist already in database, building cloud now...")
+    makeCloud.run(artist_name)
+    sys.exit()
+
+else:
+    print("Not found in database, collection of lyrics proceeding.")
 
 #removing brackets function by JF Sebastian stack overflow, needed to remove brackets such as [Verse 1 21 Savage]
 def remove_text_inside_brackets(text, brackets="[]"):
@@ -75,17 +85,17 @@ if song_info:
       looper = looper + 1
       response = requests.get(artistUrl, headers=headers)
       json = response.json()
-      print(len(json["response"]["songs"]))   #Fixing this stuff rn
+      #print(len(json["response"]["songs"]))   #Fixing this stuff rn
       for song in json["response"]["songs"]:
           full_title = str(song["full_title"])
-          if song["primary_artist"]["id"] == artistID and full_title.find("Ft.") == -1 and full_title.find("Remix") == -1:
+          if song["primary_artist"]["id"] == artistID and full_title.find("Ft.") == -1 and full_title.find("Remix") == -1 and full_title.find("Tracklist") == -1 and full_title.find("Mix") == -1:
               print(song["api_path"] +" "+ str(counter) + " "+song["title"])
               counter = counter + 1
               song_api_path = song["api_path"]
               #lyricFile.write(lyrics_from_song_api_path(song_api_path))
               fullLyrics += lyrics_from_song_api_path(song_api_path)
 
-      print("next page " + str(json["response"]["next_page"]))
+      #print("next page " + str(json["response"]["next_page"]))
       if json["response"]["next_page"] == None:
           break
 
@@ -94,3 +104,6 @@ artistInfo = (artistID, artist_name, counter, fullLyrics)
 table.execute('INSERT INTO artists VALUES (?,?,?,?)', artistInfo)
 conn.commit()
 conn.close()
+
+print("Building cloud now...")
+makeCloud.run(artist_name)
