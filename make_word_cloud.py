@@ -80,8 +80,12 @@ stopwords.add("xa0")
 stopwords.add("ctr")
 stopwords.add("zl")
 stopwords.add("don")
+stopwords.add("llc")
+stopwords.add("bmi")
+stopwords.add("ain")
+stopwords.add("nigga")
 
-coloring = np.array(Image.open("actionPic.jpg"))
+coloring = np.array(Image.open("MFDoomFace.jpg"))
 # Since the text is small collocations are turned off and text is lower-cased
 wc = WordCloud(stopwords = stopwords, collocations=False, background_color="white", max_words=2000,mask=coloring)
 wc.generate(text.lower())
