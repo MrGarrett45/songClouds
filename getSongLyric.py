@@ -1,10 +1,7 @@
 #! python3
 
-import requests
+import requests, re, sqlite3
 from bs4 import BeautifulSoup
-import re
-import shelve
-import sqlite3
 
 conn = sqlite3.connect('artistDB.db')
 table = conn.cursor()
@@ -68,9 +65,6 @@ if song_info:
   #print(songLyrics)
   
   #From here trying to capture multiple songs 
-  #lyricFile = open('lyrics.txt', 'a')
-  shelveFile = shelve.open('lyricData')
-  shelveFile['lyrcs'] = " "
   artistID = song_info["result"]["primary_artist"]["id"]
   print(artistID)
   looper = 1
@@ -100,6 +94,3 @@ artistInfo = (artistID, artist_name, counter, fullLyrics)
 table.execute('INSERT INTO artists VALUES (?,?,?,?)', artistInfo)
 conn.commit()
 conn.close()
-shelveFile['lyrics'] = fullLyrics
-#lyricFile.close()
-shelveFile.close()

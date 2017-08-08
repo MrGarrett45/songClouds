@@ -2,12 +2,10 @@
 
 from wordcloud import (WordCloud, get_single_color_func, ImageColorGenerator, STOPWORDS)
 import matplotlib.pyplot as plt
-import shelve
+import random, sqlite3
 import numpy as np
 from PIL import Image
-import random
-from palettable.colorbrewer.sequential import RdPu_9
-import sqlite3
+import palettable.colorbrewer.sequential
 
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
     return tuple(RdPu_9.colors[random.randint(2,8)])
@@ -69,10 +67,9 @@ class GroupedColorFunc(object):
     def __call__(self, word, **kwargs):
         return self.get_color_func(word)(word, **kwargs)
 
-shelveFile = shelve.open('lyricData')
 conn = sqlite3.connect('artistDB.db')
 table = conn.cursor()
-table.execute("SELECT lyrics FROM artists WHERE name=?", ("Desiigner",))
+table.execute("SELECT lyrics FROM artists WHERE name=?", ("Lil Pump",))
 lyrics = table.fetchone()
 conn.commit()
 conn.close()
@@ -81,8 +78,6 @@ text = lyrics[0]
 #text = shelveFile['lyrics']
 text.replace("\\'", "")
 text.replace("\\\\'", "")
-
-shelveFile.close()
 
 stopwords = set(STOPWORDS)
 stopwords.add("xa0")
