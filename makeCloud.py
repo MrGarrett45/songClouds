@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import random, sqlite3
 import numpy as np
 from PIL import Image
-from palettable.colorbrewer.sequential import *
+from palettable.wesanderson import *
 
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    return tuple(PuBuGn_9.colors[random.randint(2,8)])
+    return tuple(Zissou_5.colors[random.randint(0,len(Zissou_5.colors)-1)])
 
 class SimpleGroupedColorFunc(object):
     """Create a color function object which assigns EXACT colors
@@ -90,14 +90,13 @@ def run(artist_name):
     stopwords.add("ain")
     stopwords.add("ll")
     stopwords.add("nigga")
-
-    coloring = np.array(Image.open("manyColors.jpg"))
+    
+    imagePath = input("Enter your the name of your image file: ")
+    coloring = np.array(Image.open(imagePath))
 
     # Since the text is small collocations are turned off and text is lower-cased
     wc = WordCloud(stopwords = stopwords, collocations=False, background_color="white", max_words=2000,mask=coloring)
     wc.generate(text.lower())
-
-
 
     color_to_words = {
         # words below will be colored with a red single color function
@@ -105,13 +104,26 @@ def run(artist_name):
     }
     # will be colored with a grey single color function
     default_color = 'red'
-    image_colors = ImageColorGenerator(coloring)
-    grouped_color_func = GroupedColorFunc(color_to_words,default_color)
 
     #Multiple options for coloring here. Think its best to use a palette coloring system unless you want to only do one color in which case use SimpleGrouped
-    #wc.recolor(color_func=image_colors) #for copying image colors
-    #wc.recolor(color_func=grouped_color_func) #for default color functions
-    wc.recolor(color_func=color_func)  #for palette colors
+    chooseColoring = input("Enter what kind of image coloring you want. Select from image_colors, grouped_color_func, simple_color_func, or palette: ")
+    if chooseColoring == 'image_colors':
+        image_colors = ImageColorGenerator(coloring)
+        wc.recolor(color_func=image_colors)
+
+    if chooseColoring == 'grouped_color_func':
+        default_color = input("Enter a color: ")
+        grouped_color_func = GroupedColorFunc(color_to_words,default_color)
+        wc.recolor(color_func=grouped_color_func)
+
+    if chooseColoring == 'simple_color_func':
+        default_color = input("Enter a color: ")
+        simple_color_func = SimpleGroupedColorFunc(color_to_words, default_color)
+        wc.recolor(color_func=simple_color_func)
+
+    if chooseColoring == 'palette':
+        wc.recolor(color_func=color_func)
+
     # Plot
     plt.figure()
     plt.imshow(wc, interpolation="bilinear")
