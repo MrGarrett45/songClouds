@@ -17,7 +17,7 @@ test = table.execute("SELECT EXISTS(SELECT 1 FROM artists WHERE name=?)", (artis
 checkDB = table.fetchone()
 if checkDB == (1, ):
     #print(checkDB)
-    print("Artist already in database, building cloud now...")
+    print("Artist already in database!")
     makeCloud.run(artist_name)
     sys.exit()
 

@@ -5,10 +5,17 @@ import matplotlib.pyplot as plt
 import random, sqlite3
 import numpy as np
 from PIL import Image
+
 from palettable.wesanderson import *
+from palettable.colorbrewer.diverging import *
+from palettable.colorbrewer.sequential import *
+from palettable.colorbrewer.qualitative import *
+from palettable.matplotlib import *
+from palettable.mycarta import *
+from palettable.tableau import *
 
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    return tuple(Zissou_5.colors[random.randint(0,len(Zissou_5.colors)-1)])
+    return tuple(Magma_20.colors[random.randint(0,len(Magma_20.colors)-1)])
 
 class SimpleGroupedColorFunc(object):
     """Create a color function object which assigns EXACT colors
@@ -89,13 +96,17 @@ def run(artist_name):
     stopwords.add("bmi")
     stopwords.add("ain")
     stopwords.add("ll")
-    stopwords.add("nigga")
+    #stopwords.add("nigga")
     
     imagePath = input("Enter your the name of your image file: ")
     coloring = np.array(Image.open(imagePath))
 
+    font_path = "/home/gmclaughlin/Python/Fonts/Cinzel/Cinzel-Regular.ttf"
+
     # Since the text is small collocations are turned off and text is lower-cased
-    wc = WordCloud(stopwords = stopwords, collocations=False, background_color="white", max_words=2000,mask=coloring)
+    background_color = input("Enter a background color: ")
+    print("Generating cloud now...")
+    wc = WordCloud(font_path=font_path,stopwords = stopwords, collocations=False, background_color=background_color, max_words=2000,mask=coloring)
     wc.generate(text.lower())
 
     color_to_words = {
