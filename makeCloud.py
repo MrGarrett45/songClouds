@@ -104,15 +104,20 @@ def run(artist_name):
     print("Your font options are listed below: ")
     for filenames in os.walk('/home/gmclaughlin/Python/Fonts'):
         for filename in filenames:
-            print(filename)
+            if filename != '':
+                print(filename)
 
-    font = input("Enter the name of your font, or nothing for default: ")
+    font = input("Enter the name of your font, or default for DroidSanaMono: ")
     font_path = "/home/gmclaughlin/Python/Fonts/%s" % font
 
     # Since the text is small collocations are turned off and text is lower-cased
     background_color = input("Enter a background color: ")
     print("Generating cloud now...")
-    wc = WordCloud(font_path=font_path,stopwords = stopwords, collocations=False, background_color=background_color, max_words=2000,mask=coloring)
+    if font == 'default':
+        wc = WordCloud(stopwords = stopwords, collocations=False, background_color=background_color, max_words=2000,mask=coloring)
+    else:
+        wc = WordCloud(font_path=font_path,stopwords = stopwords, collocations=False, background_color=background_color, max_words=2000,mask=coloring)
+
     wc.generate(text.lower())
 
     color_to_words = {
