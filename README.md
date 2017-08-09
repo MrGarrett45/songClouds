@@ -37,6 +37,9 @@ Linkin Park:
 MF Doom:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/MFDoom.png "Doom")
 
+Sublime:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/Sublime.png "Sublime")
+
 Kenney Chesney:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/kenneyChesney.png "Kenney Chesney")
 
