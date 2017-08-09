@@ -49,5 +49,8 @@ Danny Brown:
 Cage The Elephant:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/CageTheElephantNew.png "CtE")
 
+Death Grips:
+![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/deathGripsColored.png "DG")
+
 MGMT:
 ![alt text](https://github.com/MrGarrett45/songClouds/blob/master/examplePics/MGMT.png "MGMT")
