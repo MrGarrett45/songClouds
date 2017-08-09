@@ -102,13 +102,14 @@ def run(artist_name):
     coloring = np.array(Image.open(imagePath))
     
     print("Your font options are listed below: ")
-    for filenames in os.walk('/home/gmclaughlin/Python/Fonts'):
+    for filenames in os.walk('C:\\Users\\gmclaughlin\\Fonts'):
         for filename in filenames:
             if filename != '':
                 print(filename)
 
     font = input("Enter the name of your font, or default for DroidSanaMono: ")
-    font_path = "/home/gmclaughlin/Python/Fonts/%s" % font
+    #font_path = "/home/gmclaughlin/Python/Fonts/%s" % font   #linux
+    font_path = "C:\\Users\\gmclaughlin\\Fonts\\%s" % font    #windows
 
     # Since the text is small collocations are turned off and text is lower-cased
     background_color = input("Enter a background color: ")
@@ -116,7 +117,7 @@ def run(artist_name):
     if font == 'default':
         wc = WordCloud(stopwords = stopwords, collocations=False, background_color=background_color, max_words=2000,mask=coloring)
     else:
-        wc = WordCloud(font_path=font_path,stopwords = stopwords, collocations=False, background_color=background_color, max_words=2000,mask=coloring)
+        wc = WordCloud(font_path=font_path,stopwords = stopwords, collocations=False, background_color=background_color, max_words=3000,mask=coloring)
 
     wc.generate(text.lower())
 
