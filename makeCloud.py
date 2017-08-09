@@ -2,7 +2,7 @@
 
 from wordcloud import (WordCloud, get_single_color_func, ImageColorGenerator, STOPWORDS)
 import matplotlib.pyplot as plt
-import random, sqlite3
+import random, sqlite3, os
 import numpy as np
 from PIL import Image
 
@@ -100,8 +100,14 @@ def run(artist_name):
     
     imagePath = input("Enter your the name of your image file: ")
     coloring = np.array(Image.open(imagePath))
+    
+    print("Your font options are listed below: ")
+    for filenames in os.walk('/home/gmclaughlin/Python/Fonts'):
+        for filename in filenames:
+            print(filename)
 
-    font_path = "/home/gmclaughlin/Python/Fonts/Cinzel/Cinzel-Regular.ttf"
+    font = input("Enter the name of your font, or nothing for default: ")
+    font_path = "/home/gmclaughlin/Python/Fonts/%s" % font
 
     # Since the text is small collocations are turned off and text is lower-cased
     background_color = input("Enter a background color: ")
