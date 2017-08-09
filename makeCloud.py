@@ -15,7 +15,8 @@ from palettable.mycarta import *
 from palettable.tableau import *
 
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    return tuple(Magma_20.colors[random.randint(0,len(Magma_20.colors)-1)])
+    colorPalette = Tableau_10
+    return tuple(colorPalette.colors[random.randint(0,len(colorPalette.colors)-1)])
 
 class SimpleGroupedColorFunc(object):
     """Create a color function object which assigns EXACT colors
