@@ -8,7 +8,7 @@ table = conn.cursor()
 table.execute('''CREATE TABLE IF NOT EXISTS artists (id integer primary key, name text, numSongs real, lyrics text) ''')
 
 base_url = "https://api.genius.com"
-headers = {'Authorization': 'Bearer U6sHDfsAn3dAnrPFFwgxzB05A7-3kVK8pb2yNphCu37VVEeDXg1MIYlCTf0bRrfx'}
+headers = {'Authorization': 'Bearer TOKEN'}
 
 artist_name = input("Enter an artists name: ")
 
