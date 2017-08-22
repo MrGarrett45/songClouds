@@ -15,7 +15,7 @@ from palettable.mycarta import *
 from palettable.tableau import *
 
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    colorPalette = Moonrise2_4
+    colorPalette = BlueRed_12
     return tuple(colorPalette.colors[random.randint(0,len(colorPalette.colors)-1)])
 
 class SimpleGroupedColorFunc(object):
